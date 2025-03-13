@@ -17,9 +17,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-74e=v-(lsuluojpl^p%*38j^v(6f(00v2*m7s62)_&vp+1)3x%")
 
 # SECURITY WARNING: Don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+#DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'madrasa-omega.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+#'madrasa-omega.vercel.app'
 
 # Application definition
 
