@@ -1,26 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "madrasa/wsgi.py",
-        "use": "@vercel/python"
+  "version": 2,
+  "builds": [
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "madrasa/wsgi.py"
-      }
-    ],
-    "env": {
-      "SECRET_KEY": "@secret_key",
-      "DEBUG": "@debug",
-      "ALLOWED_HOSTS": "@allowed_hosts",
-      "DB_NAME": "@db_name",
-      "DB_USER": "@db_user",
-      "DB_PASSWORD": "@db_password",
-      "DB_HOST": "@db_host",
-      "DB_PORT": "@db_port"
+    },
+    {
+      "src": "madrasa/wsgi.py",
+      "use": "@vercel/python"
     }
-  }
-  
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "madrasa/wsgi.py"
+    }
+  ]
+}
