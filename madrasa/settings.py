@@ -25,14 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: Keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-74e=v-(lsuluojpl^p%*38j^v(6f(00v2*m7s62)_&vp+1)3x%")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: Don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split()
-if not ALLOWED_HOSTS:
-    ALLOWED_HOSTS = [".vercel.app"]
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split()
+# if not ALLOWED_HOSTS:
+ALLOWED_HOSTS = [".vercel.app"]
 
 
 # Application definition
@@ -86,13 +86,13 @@ ASGI_APPLICATION = "madrasa.asgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
