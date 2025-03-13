@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}{{ class.name }} - Passed Students | School Management System{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="">Classes</a></li>
+            {% comment %} {% url 'class_list' %} {% endcomment %}
+            <li class="breadcrumb-item active" aria-current="page">{{ class.name }}</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Title -->
+    <h1 class="page-title">{{ class.name }} - {{ class.year }}</h1>
+    
+    <!-- Main Content -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+            <h3 class="mb-0 py-1">Passed students</h3>
+            {% if latest_exam %}
+            <span class="badge bg-info my-1">{{ latest_exam.name }} - {{ latest_exam.start_date|date:"M d Y" }} to {{ latest_exam.end_date|date:"M d Y" }}</span>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if latest_exam %}
+                {% if passed_students %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Registration Number</th>
+                                    <th>Roll Number</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in passed_students %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div class="fw-bold">{{ item.student.name }}</div>
+                                                    <small class="text-muted d-block d-md-none">{{ item.student.reg_number }}</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="d-none d-md-table-cell">{{ item.student.reg_number }}</td>
+                                        <td>{{ item.student.roll_number }}</td>
+                                        <td><span class="badge bg-success">{{ item.status }}</span></td>
+                                    </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination - if you have it -->
+                    {% if passed_students.has_other_pages %}
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            {% if passed_students.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ passed_students.previous_page_number }}">&laquo; Previous</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo; Previous</span>
+                            </li>
+                            {% endif %}
+                            
+                            {% for i in passed_students.paginator.page_range %}
+                                {% if passed_students.number == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ i }}</span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if passed_students.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ passed_students.next_page_number }}">Next &raquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">Next &raquo;</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No students from this class passed the {{ latest_exam.name }}.
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    No examinations have been conducted yet.
+                </div>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-6">
+                    {% if passed_students %}
+                        <p class="mb-0"><strong>Total Passed:</strong> {{ passed_students|length }} students</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="" class="btn btn-primary ms-2">
+                        {% comment %} {% url 'class_detail' class.id %} {% endcomment %}
+                        <i class="fas fa-arrow-left me-2"></i> Back to Class Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Cards -->
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Class Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Total Students
+                            <span class="badge bg-primary rounded-pill">{{ class.students.count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Passed Students
+                            <span class="badge bg-success rounded-pill">{{ passed_students|length }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Passing Rate
+                            <span class="badge bg-info rounded-pill">
+                                {% if class.students.count > 0 %}
+                                    {{ passed_students|length|floatformat:0 }}%
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="" class="btn btn-outline-primary">
+                              {% comment %} {% url 'print_results' class.id %} {% endcomment %}
+                            <i class="fas fa-print me-2"></i> Print Results
+                        </a>
+                        <a href="" class="btn btn-outline-success">
+                            {% comment %} {% url 'export_results' class.id %} {% endcomment %}
+                            <i class="fas fa-file-excel me-2"></i> Export to Excel
+                        </a>
+                        <a href="" class="btn btn-outline-info">
+                            {% comment %} {% url 'notify_parents' class.id %} {% endcomment %}
+                            <i class="fas fa-envelope me-2"></i> Notify Parents
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add any JavaScript functionality here
+    document.addEventListener('DOMContentLoaded', function() {
+        // Highlight the row when clicked
+        const tableRows = document.querySelectorAll('tbody tr');
+        tableRows.forEach(row => {
+            row.addEventListener('click', function() {
+                tableRows.forEach(r => r.classList.remove('table-active'));
+                this.classList.add('table-active');
+            });
+        });
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - CM Memorial Sunni Madrasa{% endblock %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section with Islamic Pattern Background -->
+<div class="text-white text-center mb-3 mb-md-4">
+    <div class="container">
+        <img src="{{ specific_image.image.url }}" alt="{{ specific_image.title|default:'Madrasa Logo' }}" class="img-fluid rounded-3 shadow about-image" />
+    </div>
+</div>
+
+<!-- Enhanced Announcement Banner -->
+<div class="row mx-0 ">
+    <div class="col-12 px-2 px-md-3">
+        <div class="card shadow border-0 rounded-3 announcement-card">
+            <div class="card-body announcement-glow p-2 p-md-3 rounded">
+                <h2 class="lead text-center mb-0 fw-bold">
+                    <a href="{% url 'result_class_list' %}" class="text-dark text-decoration-none d-flex flex-column flex-md-row justify-content-center align-items-center announcement-link p-2">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-bullhorn me-2 me-md-3 fa-lg pulse-icon d-none d-sm-block"></i>
+                            <span class="announcement-text fs-5 fs-md-4">FINAL EXAM RESULTS NOW AVAILABLE</span>
+                        </div>
+                        <i class="fas fa-arrow-right ms-2 ms-md-3 bounce-arrow d-none d-md-block"></i>
+                    </a>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Responsive Height Carousel Section -->
+<div class="container-fluid px-0 mb-4 mb-md-5">
+    <div id="mainCarousel" class="carousel slide shadow-lg overflow-hidden responsive-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for banner in banners %}
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="{{ forloop.counter0 }}" 
+                    class="{% if forloop.first %}active{% endif %}" 
+                    {% if forloop.first %}aria-current="true"{% endif %} 
+                    aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+        
+        <div class="carousel-inner h-100">
+            {% for banner in banners %}
+                <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+                    <img src="{{ banner.image.url }}" class="d-block w-100 h-100" alt="{{ banner.title }}" 
+                         style="object-fit: cover;">
+                </div>
+            {% endfor %}
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Modified Stats Section with Responsive Cards -->
+<div class="container px-2 px-md-3">
+    <div class="row my-4 g-3 justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="card text-center h-100 border-0 shadow-sm hover-card">
+                <div class="card-body d-flex flex-column p-3 p-md-4">
+                    <div class="icon-container mb-3">
+                        <i class="fas fa-chalkboard fa-2x fa-md-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Classes</h5>
+                    <p class="card-text display-5 display-md-4 my-2 my-md-3 fw-bold text-primary">{{ num_classes }}</p>
+                    <a href="#" class="btn btn-primary mt-auto btn-sm btn-md-md">
+                        <i class="fas fa-arrow-right me-2"></i>View Classes
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card text-center h-100 border-0 shadow-sm hover-card">
+                <div class="card-body d-flex flex-column p-3 p-md-4">
+                    <div class="icon-container mb-3">
+                        <i class="fas fa-user-graduate fa-2x fa-md-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Students</h5>
+                    <p class="card-text display-5 display-md-4 my-2 my-md-3 fw-bold text-primary">{{ num_students }}</p>
+                    <a href="#" class="btn btn-primary mt-auto btn-sm btn-md-md">
+                        <i class="fas fa-arrow-right me-2"></i>View Students
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Improved Academic Calendar for Mobile -->
+<div class="row mx-0 my-4">
+    <div class="col-12 px-2 px-md-3">
+        <div class="card border-0 shadow rounded-3">
+            <div class="card-header bg-primary text-white py-2 py-md-3">
+                <h5 class="mb-0 fs-6 fs-md-5"><i class="fas fa-calendar-alt me-2"></i>Academic Calendar</h5>
+            </div>
+            <div class="card-body p-2 p-md-4">
+                <div class="row g-2">
+                    <div class="col-12 col-md-6 mb-0">
+                        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom calendar-item">
+                            <span class="small"><i class="fas fa-graduation-cap me-1 me-md-2 text-primary"></i>Final Examinations</span>
+                            <span class="badge bg-primary">June 15-30</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom calendar-item">
+                            <span class="small"><i class="fas fa-book-open me-1 me-md-2 text-success"></i>New Term Registration</span>
+                            <span class="badge bg-success">July 1-15</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom calendar-item">
+                            <span class="small"><i class="fas fa-chalkboard-teacher me-1 me-md-2 text-warning"></i>Classes Begin</span>
+                            <span class="badge bg-warning text-dark">August 1</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom calendar-item">
+                            <span class="small"><i class="fas fa-award me-1 me-md-2 text-info"></i>Annual Ceremony</span>
+                            <span class="badge bg-info">December 15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
