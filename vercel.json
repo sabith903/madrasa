@@ -1,19 +1,26 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "madrasa/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "distDir": { "runtime": "python3.12" }
+    "version": 2,
+    "builds": [
+      {
+        "src": "madrasa/wsgi.py",
+        "use": "@vercel/python"
       }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "madrasa/wsgi.py"
+      }
+    ],
+    "env": {
+      "SECRET_KEY": "@secret_key",
+      "DEBUG": "@debug",
+      "ALLOWED_HOSTS": "@allowed_hosts",
+      "DB_NAME": "@db_name",
+      "DB_USER": "@db_user",
+      "DB_PASSWORD": "@db_password",
+      "DB_HOST": "@db_host",
+      "DB_PORT": "@db_port"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "madrasa/wsgi.py"
-    }
-  ],
-  "buildCommand": "apt-get update && apt-get install -y libpq-dev"
-}
+  }
+  
