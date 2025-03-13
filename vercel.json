@@ -9,7 +9,7 @@
       }
     },
     {
-      "src": "madrasa/wsgi.py",
+      "src": "vercel.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb"
@@ -23,7 +23,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "madrasa/wsgi.py"
+      "dest": "vercel.py"
     }
   ]
 }
