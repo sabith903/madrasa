@@ -7,9 +7,17 @@
 <!-- Hero Section with Islamic Pattern Background -->
 <div class="text-white text-center mb-3 mb-md-4">
     <div class="container">
-        <img src="{{ specific_image.image.url }}" alt="{{ specific_image.title|default:'Madrasa Logo' }}" class="img-fluid rounded-3 shadow about-image" />
+        {% if specific_image %}
+            <img src="{{ specific_image.image.url }}" alt="{{ specific_image.title|default:'Madrasa Logo' }}" class="img-fluid rounded-3 shadow about-image" />
+        {% else %}
+            <p>No image found</p>
+        {% endif %}
     </div>
 </div>
+
+
+    <img src="{{ specific_image.image.url }}" alt="{{ specific_image.title|default:'Madrasa Logo' }}" class="img-fluid rounded-3 shadow about-image" />
+
 
 <!-- Enhanced Announcement Banner -->
 <div class="row mx-0 ">
