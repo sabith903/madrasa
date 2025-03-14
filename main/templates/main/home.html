@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - CM Memorial Sunni Madrasa{% endblock %}
+{% block title %}CM Memorial Sunni Madrasa{% endblock %}
 {% load static %}
 
 {% block content %}
@@ -16,9 +16,6 @@
 </div>
 
 
-    <img src="{{ specific_image.image.url }}" alt="{{ specific_image.title|default:'Madrasa Logo' }}" class="img-fluid rounded-3 shadow about-image" />
-
-
 <!-- Enhanced Announcement Banner -->
 <div class="row mx-0 ">
     <div class="col-12 px-2 px-md-3">
@@ -28,7 +25,7 @@
                     <a href="{% url 'result_class_list' %}" class="text-dark text-decoration-none d-flex flex-column flex-md-row justify-content-center align-items-center announcement-link p-2">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-bullhorn me-2 me-md-3 fa-lg pulse-icon d-none d-sm-block"></i>
-                            <span class="announcement-text fs-5 fs-md-4">FINAL EXAM RESULTS NOW AVAILABLE</span>
+                            <span class="announcement-text fs-5 fs-md-4">CHECK RESULTS NOW</span>
                         </div>
                         <i class="fas fa-arrow-right ms-2 ms-md-3 bounce-arrow d-none d-md-block"></i>
                     </a>

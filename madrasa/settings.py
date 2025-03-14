@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-74e=v-(lsuluojpl^p%*38j^v(6f(00v2*m7s62)_&vp+1)3x%")
 
 # SECURITY WARNING: Don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['results.kabyka.art', 'www.results.kabyka.art']
