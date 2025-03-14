@@ -26,7 +26,6 @@ ALLOWED_HOSTS = ['results.kabyka.art', 'www.results.kabyka.art']
 # Application definition
 
 INSTALLED_APPS = [
-    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +66,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'madrasa.wsgi.application'
-ASGI_APPLICATION = 'madrasa.asgi.application'
 
 
 # Database
