@@ -75,7 +75,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',  # Example engine
         'NAME': 'madrasa',  # Replace with actual database name
         'USER': 'postgres',  # Replace with actual database user
-        'PASSWORD': '49984998',  # Replace with actual database password
+        'PASSWORD': 'postgres',  # Replace with actual database password
         'HOST': 'localhost',  # Replace with actual host
         'PORT': '5432',  # Replace with actual port (default PostgreSQL port)
     }
