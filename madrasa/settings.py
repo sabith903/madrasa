@@ -67,6 +67,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'madrasa.wsgi.application'
+ASGI_APPLICATION = 'madrasa.asgi.application'
 
 
 # Database
