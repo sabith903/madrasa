@@ -1,5 +1,4 @@
 import os
-import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -17,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-74e=v-(lsuluojpl^p%*38j^v(6f(00v2*m7s62)_&vp+1)3x%")
 
 # SECURITY WARNING: Don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['results.kabyka.art', 'www.results.kabyka.art']
@@ -72,11 +71,14 @@ WSGI_APPLICATION = 'madrasa.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True  # Add this for Railway
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Example engine
+        'NAME': 'madrasa',  # Replace with actual database name
+        'USER': 'postgres',  # Replace with actual database user
+        'PASSWORD': '49984998',  # Replace with actual database password
+        'HOST': 'localhost',  # Replace with actual host
+        'PORT': '5432',  # Replace with actual port (default PostgreSQL port)
+    }
 }
 
 
