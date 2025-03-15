@@ -32,7 +32,6 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Registration Number</th>
                                     <th>Roll Number</th>
                                     <th>Status</th>
                                 </tr>
@@ -44,15 +43,13 @@
                                             <div class="d-flex align-items-center">
                                                 <div>
                                                     <div class="fw-bold">{{ item.student.name }}</div>
-                                                    <small class="text-muted d-block d-md-none">{{ item.student.reg_number }}</small>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="d-none d-md-table-cell">{{ item.student.reg_number }}</td>
                                         <td>{{ item.student.roll_number }}</td>
                                         <td><span class="badge bg-success">{{ item.status }}</span></td>
                                     </tr>
-                                    {% endfor %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -115,68 +112,6 @@
                     {% if passed_students %}
                         <p class="mb-0"><strong>Total Passed:</strong> {{ passed_students|length }} students</p>
                     {% endif %}
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="" class="btn btn-primary ms-2">
-                        {% comment %} {% url 'class_detail' class.id %} {% endcomment %}
-                        <i class="fas fa-arrow-left me-2"></i> Back to Class Details
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Additional Cards -->
-    <div class="row mt-4">
-        <div class="col-md-6 mb-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Class Statistics</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Total Students
-                            <span class="badge bg-primary rounded-pill">{{ class.students.count }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Passed Students
-                            <span class="badge bg-success rounded-pill">{{ passed_students|length }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Passing Rate
-                            <span class="badge bg-info rounded-pill">
-                                {% if class.students.count > 0 %}
-                                    {{ passed_students|length|floatformat:0 }}%
-                                {% else %}
-                                    N/A
-                                {% endif %}
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Quick Actions</h5>
-                </div>
-                <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <a href="" class="btn btn-outline-primary">
-                              {% comment %} {% url 'print_results' class.id %} {% endcomment %}
-                            <i class="fas fa-print me-2"></i> Print Results
-                        </a>
-                        <a href="" class="btn btn-outline-success">
-                            {% comment %} {% url 'export_results' class.id %} {% endcomment %}
-                            <i class="fas fa-file-excel me-2"></i> Export to Excel
-                        </a>
-                        <a href="" class="btn btn-outline-info">
-                            {% comment %} {% url 'notify_parents' class.id %} {% endcomment %}
-                            <i class="fas fa-envelope me-2"></i> Notify Parents
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

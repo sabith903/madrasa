@@ -78,7 +78,7 @@
                     </div>
                     <h5 class="card-title fw-bold">Classes</h5>
                     <p class="card-text display-5 display-md-4 my-2 my-md-3 fw-bold text-primary">{{ num_classes }}</p>
-                    <a href="#" class="btn btn-primary mt-auto btn-sm btn-md-md">
+                    <a href="{% url 'result_class_list' %}" class="btn btn-primary mt-auto btn-sm btn-md-md">
                         <i class="fas fa-arrow-right me-2"></i>View Classes
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                     </div>
                     <h5 class="card-title fw-bold">Students</h5>
                     <p class="card-text display-5 display-md-4 my-2 my-md-3 fw-bold text-primary">{{ num_students }}</p>
-                    <a href="#" class="btn btn-primary mt-auto btn-sm btn-md-md">
+                    <a href="{% url 'result_class_list' %}" class="btn btn-primary mt-auto btn-sm btn-md-md">
                         <i class="fas fa-arrow-right me-2"></i>View Students
                     </a>
                 </div>
@@ -102,7 +102,7 @@
 </div>
 
 <!-- Improved Academic Calendar for Mobile -->
-<div class="row mx-0 my-4">
+{% comment %} <div class="row mx-0 my-4">
     <div class="col-12 px-2 px-md-3">
         <div class="card border-0 shadow rounded-3">
             <div class="card-header bg-primary text-white py-2 py-md-3">
@@ -134,5 +134,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
 {% endblock %}
